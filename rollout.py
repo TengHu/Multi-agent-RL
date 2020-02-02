@@ -8,9 +8,8 @@ import sys
 import shutil
 
 import argparse
-from social_dilemmas.envs.cleanup import CleanupEnv
-from social_dilemmas.envs.harvest import HarvestEnv
-from social_dilemmas.envs.cartpole import CartPoleEnv
+from multiagent.envs.cleanup import CleanupEnv
+from multiagent.envs.harvest import HarvestEnv
 
 
 #####################################

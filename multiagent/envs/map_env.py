@@ -6,7 +6,7 @@ import random
 import matplotlib.pyplot as plt
 import numpy as np
 
-from social_dilemmas.envs.multi_agent_env import MultiAgentEnv
+from multiagent.envs.multi_agent_env import MultiAgentEnv
 
 ACTIONS = {'MOVE_LEFT': [-1, 0],  # Move left
            'MOVE_RIGHT': [1, 0],  # Move right

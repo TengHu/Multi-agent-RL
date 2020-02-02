@@ -1,6 +1,6 @@
 from collections import OrderedDict
 
-from social_dilemmas.envs.multi_agent_env import MultiAgentEnv
+from multiagent.envs.multi_agent_env import MultiAgentEnv
 
 
 class _GroupAgentsWrapper(MultiAgentEnv):
