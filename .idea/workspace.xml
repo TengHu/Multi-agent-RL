@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d2c49148-b609-4d0b-aa50-36172bb4a3fe" name="Default Changelist" comment="" />
+    <list default="true" id="d2c49148-b609-4d0b-aa50-36172bb4a3fe" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,8 +126,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="44" />
-    <option name="y" value="95" />
+    <option name="x" value="54" />
+    <option name="y" value="24" />
     <option name="width" value="1628" />
     <option name="height" value="954" />
   </component>
@@ -141,6 +143,11 @@
             <path>
               <item name="Multi-agent-RL" type="b2602c69:ProjectViewProjectNode" />
               <item name="Multi-agent-RL" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Multi-agent-RL" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Multi-agent-RL" type="462c0819:PsiDirectoryNode" />
+              <item name="multiagent" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -177,15 +184,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1580618046098</updated>
-      <workItem from="1580618048556" duration="1357000" />
+      <workItem from="1580618048556" duration="1752000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1357000" />
+    <option name="totallyTimeSpent" value="1752000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="74" y="23" width="1628" height="954" extended-state="0" />
+    <frame x="54" y="24" width="1628" height="954" extended-state="0" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24968474" />
