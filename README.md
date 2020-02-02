@@ -3,7 +3,7 @@
 
 
 
-The Cleanup and Harvest game environments are from the code base
+The Cleanup and Harvest environments and tests are from the code base
 https://github.com/eugenevinitsky/sequential_social_dilemma_games
 
 
