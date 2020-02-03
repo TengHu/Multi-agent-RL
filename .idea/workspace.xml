@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d2c49148-b609-4d0b-aa50-36172bb4a3fe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/multiagent/envs/agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/multiagent/envs/agent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/multiagent/envs/cleanup.py" beforeDir="false" afterPath="$PROJECT_DIR$/multiagent/envs/cleanup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/multiagent/envs/harvest.py" beforeDir="false" afterPath="$PROJECT_DIR$/multiagent/envs/harvest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/multiagent/envs/map_env.py" beforeDir="false" afterPath="$PROJECT_DIR$/multiagent/envs/map_env.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/multiagent/envs/multi_agent_env.py" beforeDir="false" afterPath="$PROJECT_DIR$/multiagent/envs/multi_agent_env.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollout.py" beforeDir="false" afterPath="$PROJECT_DIR$/rollout.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_envs.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_envs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training/utility_funcs.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utility_funcs.py" beforeDir="false" afterPath="$PROJECT_DIR$/utility_funcs.py" afterDir="false" />
-    </list>
+    <list default="true" id="d2c49148-b609-4d0b-aa50-36172bb4a3fe" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,8 +41,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/utility_funcs.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="399">
-                  <caret line="46" column="30" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
+                <state relative-caret-position="279">
+                  <caret line="38" column="9" lean-forward="true" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
                   <folding>
                     <element signature="e#0#10#0" expanded="true" />
                   </folding>
@@ -76,7 +66,7 @@
       </split-first>
       <split-second>
         <leaf>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/multiagent/envs/map_env.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="79">
@@ -88,11 +78,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/cooperation/note">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="210">
-                  <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+                  <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
                 </state>
               </provider>
             </entry>
@@ -151,9 +141,9 @@
       <find>agents</find>
       <find>pdb</find>
       <find>setup_agents</find>
-      <find>rand_int</find>
       <find>get_done</find>
       <find>agent</find>
+      <find>rand_int</find>
     </findStrings>
     <replaceStrings>
       <replace>FIRE_ACTION</replace>
@@ -178,6 +168,7 @@
         <option value="$PROJECT_DIR$/multiagent/envs/map_env.py" />
         <option value="$PROJECT_DIR$/rollout.py" />
         <option value="$PROJECT_DIR$/utility_funcs.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/cooperation/note" />
       </list>
     </option>
   </component>
@@ -206,51 +197,6 @@
             <path>
               <item name="Multi-agent-RL" type="b2602c69:ProjectViewProjectNode" />
               <item name="Multi-agent-RL" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Multi-agent-RL" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Multi-agent-RL" type="462c0819:PsiDirectoryNode" />
-              <item name="env" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Multi-agent-RL" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Multi-agent-RL" type="462c0819:PsiDirectoryNode" />
-              <item name="env" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Multi-agent-RL" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Multi-agent-RL" type="462c0819:PsiDirectoryNode" />
-              <item name="env" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="python3.7" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Multi-agent-RL" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Multi-agent-RL" type="462c0819:PsiDirectoryNode" />
-              <item name="env" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="python3.7" type="462c0819:PsiDirectoryNode" />
-              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Multi-agent-RL" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Multi-agent-RL" type="462c0819:PsiDirectoryNode" />
-              <item name="env" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="python3.7" type="462c0819:PsiDirectoryNode" />
-              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
-              <item name="gym" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Multi-agent-RL" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Multi-agent-RL" type="462c0819:PsiDirectoryNode" />
-              <item name="env" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="python3.7" type="462c0819:PsiDirectoryNode" />
-              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
-              <item name="gym" type="462c0819:PsiDirectoryNode" />
-              <item name="spaces" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Multi-agent-RL" type="b2602c69:ProjectViewProjectNode" />
@@ -316,13 +262,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20029000" />
+    <option name="totallyTimeSpent" value="20318000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-88" y="-1043" width="1765" height="1015" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.06616367" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28322694" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -335,7 +280,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3672806" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32502708" />
       <window_info anchor="bottom" id="Python Console" order="11" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -491,13 +436,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/cooperation/note">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/env/lib/python3.7/site-packages/gym/core.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4260">
@@ -542,16 +480,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/multiagent/envs/map_env.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="653" column="32" lean-forward="true" selection-start-line="653" selection-start-column="32" selection-end-line="653" selection-end-column="32" />
-          <folding>
-            <element signature="e#58#71#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rollout.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
@@ -562,10 +490,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/multiagent/envs/map_env.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="653" column="32" lean-forward="true" selection-start-line="653" selection-start-column="32" selection-end-line="653" selection-end-column="32" />
+          <folding>
+            <element signature="e#58#71#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/cooperation/note">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/utility_funcs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="46" column="30" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
+        <state relative-caret-position="279">
+          <caret line="38" column="9" lean-forward="true" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
