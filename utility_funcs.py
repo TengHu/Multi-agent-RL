@@ -25,7 +25,7 @@ def make_video_from_image_dir(vid_path, img_folder, video_name='trajectory', fps
 
 
 def make_video_from_rgb_imgs(rgb_arrs, vid_path, video_name='trajectory',
-                             fps=5, format="mp4v", resize=(640, 480)):
+                             fps=5, resize=(640, 480)):
     """
     Create a video from a list of rgb arrays
     """
@@ -44,7 +44,7 @@ def make_video_from_rgb_imgs(rgb_arrs, vid_path, video_name='trajectory',
     video = cv2.VideoWriter(video_path, fourcc, float(fps), (width, height))
 
     for i, image in enumerate(rgb_arrs):
-        percent_done = int((i / len(rgb_arrs)) * 100)
+        percent_done = int((float(i) / len(rgb_arrs)) * 100)
         if percent_done % 20 == 0:
             print("\t...", percent_done, "% of frames rendered")
         if resize is not None:

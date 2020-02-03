@@ -2,12 +2,12 @@ import numpy as np
 
 from multiagent.envs.agent import HarvestAgent  # HARVEST_VIEW_SIZE
 from multiagent.constants import HARVEST_MAP
-from multiagent.envs.map_env import MapEnv, ACTIONS
+from multiagent.envs.map_env import MapEnv, MAP_ACTIONS
 
 APPLE_RADIUS = 2
 
 # Add custom actions to the agent
-ACTIONS['FIRE'] = 5  # length of firing range
+MAP_ACTIONS['FIRE'] = 5  # length of firing range
 
 SPAWN_PROB = [0, 0.005, 0.02, 0.05]
 
@@ -84,7 +84,7 @@ class HarvestEnv(MapEnv):
         agent.fire_beam('F')
         updates = self.update_map_fire(agent.get_pos().tolist(),
                                        agent.get_orientation(),
-                                       ACTIONS['FIRE'], fire_char='F')
+                                       MAP_ACTIONS['FIRE'], fire_char='F')
         return updates
 
     def custom_map_update(self):

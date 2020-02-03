@@ -1,13 +1,20 @@
 import numpy as np
 import random
-
+from gym.spaces import Box
+from gym.spaces import Discrete
 from multiagent.constants import CLEANUP_MAP
-from multiagent.envs.map_env import MapEnv, ACTIONS
-from multiagent.envs.agent import CleanupAgent  # CLEANUP_VIEW_SIZE
+from multiagent.envs.map_env import MapEnv, MAP_ACTIONS
+from multiagent.envs.agent import BASE_ACTIONS, Agent
+import pdb
 
 # Add custom actions to the agent
-ACTIONS['FIRE'] = 5  # length of firing beam
-ACTIONS['CLEAN'] = 5  # length of cleanup beam
+FIRE_ACTION = 'FIRE'
+CLEAN_ACTION = 'CLEAN'
+
+
+MAP_ACTIONS[FIRE_ACTION] = 5  # length of firing beam
+MAP_ACTIONS[CLEAN_ACTION] = 5  # length of cleanup beam
+
 
 # Custom colour dictionary
 CLEANUP_COLORS = {'C': [100, 255, 255],  # Cyan cleaning beam
@@ -70,6 +77,8 @@ class CleanupEnv(MapEnv):
         agents = list(self.agents.values())
         return agents[0].observation_space
 
+
+
     def custom_reset(self):
         """Initialize the walls and the waste"""
         for waste_start_point in self.waste_start_points:
@@ -83,16 +92,16 @@ class CleanupEnv(MapEnv):
     def custom_action(self, agent, action):
         """Allows agents to take actions that are not move or turn"""
         updates = []
-        if action == 'FIRE':
+        if action == FIRE_ACTION:
             agent.fire_beam('F')
             updates = self.update_map_fire(agent.get_pos().tolist(),
-                                           agent.get_orientation(), ACTIONS['FIRE'],
+                                           agent.get_orientation(), MAP_ACTIONS[FIRE_ACTION],
                                            fire_char='F')
-        elif action == 'CLEAN':
+        elif action == CLEAN_ACTION:
             agent.fire_beam('C')
             updates = self.update_map_fire(agent.get_pos().tolist(),
                                            agent.get_orientation(),
-                                           ACTIONS['FIRE'],
+                                           MAP_ACTIONS[FIRE_ACTION],
                                            fire_char='C',
                                            cell_types=['H'],
                                            update_char=['R'],
@@ -115,8 +124,11 @@ class CleanupEnv(MapEnv):
             # grid = util.return_view(map_with_agents, spawn_point,
             #                         CLEANUP_VIEW_SIZE, CLEANUP_VIEW_SIZE)
             # agent = CleanupAgent(agent_id, spawn_point, rotation, grid)
+
+
             agent = CleanupAgent(agent_id, spawn_point, rotation, map_with_agents)
             self.agents[agent_id] = agent
+
 
     def spawn_apples_and_waste(self):
         spawn_points = []
@@ -143,7 +155,24 @@ class CleanupEnv(MapEnv):
         return spawn_points
 
     def compute_probabilities(self):
+        # use waste_density to determine current_apple_spawn_prob
+
+        '''
+
+        waste_density >= thresholdDepletion: 0
+        waste_density <= thresholdRestoration < thresholdDepletion: appleRespawnProbability
+
+
+        thresholdRestoration < waste_density < thresholdDepletion:
+
+        (-waste_density + thresholdDepletion) * appleRespawnProbability * (thresholdDepletion - thresholdRestoration)
+
+
+        '''
+
         waste_density = 0
+
+
         if self.potential_waste_area > 0:
             waste_density = 1 - self.compute_permitted_area() / self.potential_waste_area
         if waste_density >= thresholdDepletion:
@@ -166,3 +195,56 @@ class CleanupEnv(MapEnv):
         current_area = counts_dict.get('H', 0)
         free_area = self.potential_waste_area - current_area
         return free_area
+
+
+
+
+
+
+class CleanupAgent(Agent):
+
+    CLEANUP_ACTIONS = BASE_ACTIONS.copy()
+    CLEANUP_ACTIONS.update({7: FIRE_ACTION,  # Fire a penalty beam
+                            8: CLEAN_ACTION})  # Fire a cleaning beam
+
+    CLEANUP_VIEW_SIZE = 7
+
+    def __init__(self, agent_id, start_pos, start_orientation, grid, view_len=CLEANUP_VIEW_SIZE):
+        self.view_len = view_len
+        super().__init__(agent_id, start_pos, start_orientation, grid, view_len, view_len)
+        # remember what you've stepped on
+        self.update_agent_pos(start_pos)
+        self.update_agent_rot(start_orientation)
+
+
+    @property
+    def action_space(self):
+        return Discrete(9)
+
+    @property
+    def observation_space(self):
+        return Box(low=0.0, high=0.0, shape=(2 * self.view_len + 1, 2 * self.view_len + 1, 3),
+                   dtype=np.float32)
+
+
+    def action_map(self, action_number):
+        return self.CLEANUP_ACTIONS[action_number]
+
+    def fire_beam(self, char):
+        if char == 'F':
+            self.reward_this_turn -= 1
+
+    def get_done(self):
+        return False
+
+    def hit(self, char):
+        if char == 'F':
+            self.reward_this_turn -= 50
+
+    def consume(self, char):
+        """Defines how an agent interacts with the char it is standing on"""
+        if char == 'A':
+            self.reward_this_turn += 1
+            return ' '
+        else:
+            return char

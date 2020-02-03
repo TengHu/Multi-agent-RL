@@ -6,15 +6,15 @@ import numpy as np
 import random
 
 from gym.spaces import Discrete
-from social_dilemmas.envs.agent import Agent
-from social_dilemmas.envs.agent import CleanupAgent
-from social_dilemmas.envs.agent import HarvestAgent
-from social_dilemmas.envs.agent import BASE_ACTIONS
-from social_dilemmas.envs.agent import HARVEST_ACTIONS
-from social_dilemmas.envs.agent import CLEANUP_ACTIONS
-from social_dilemmas.envs.cleanup import CleanupEnv
-from social_dilemmas.envs.harvest import HarvestEnv
-from social_dilemmas.envs.map_env import MapEnv
+from multiagent.envs.agent import Agent
+from multiagent.envs.agent import CleanupAgent
+from multiagent.envs.agent import HarvestAgent
+from multiagent.envs.agent import BASE_ACTIONS
+from multiagent.envs.agent import HARVEST_ACTIONS
+from multiagent.envs.agent import CLEANUP_ACTIONS
+from multiagent.envs.cleanup import CleanupEnv
+from multiagent.envs.harvest import HarvestEnv
+from multiagent.envs.map_env import MapEnv
 
 import utility_funcs as util
 

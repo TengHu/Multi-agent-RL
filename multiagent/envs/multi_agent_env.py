@@ -2,8 +2,7 @@
 
 class MultiAgentEnv:
     """An environment that hosts multiple independent agents.
-    Agents are identified by (string) agent ids. Note that these "agents" here
-    are not to be confused with RLlib agents.
+    Agents are identified by (string) agent ids.
     Examples:
         >>> env = MyMultiAgentEnv()
         >>> obs = env.reset()

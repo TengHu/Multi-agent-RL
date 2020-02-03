@@ -4,16 +4,11 @@ from gym.spaces import Box
 from gym.spaces import Discrete
 import numpy as np
 import utility_funcs as util
+from multiagent.envs.map_env import MAP_ACTIONS
 
+import pdb
 # basic moves every agent should do
-BASE_ACTIONS = {0: 'MOVE_LEFT',  # Move left
-                1: 'MOVE_RIGHT',  # Move right
-                2: 'MOVE_UP',  # Move up
-                3: 'MOVE_DOWN',  # Move down
-                4: 'STAY',  # don't move
-                5: 'TURN_CLOCKWISE',  # Rotate counter clockwise
-                6: 'TURN_COUNTERCLOCKWISE'}  # Rotate clockwise
-
+BASE_ACTIONS = {i:name for i,name in enumerate(MAP_ACTIONS)}
 
 class Agent(object):
 
@@ -196,51 +191,3 @@ class HarvestAgent(Agent):
             return char
 
 
-CLEANUP_ACTIONS = BASE_ACTIONS.copy()
-CLEANUP_ACTIONS.update({7: 'FIRE',  # Fire a penalty beam
-                        8: 'CLEAN'})  # Fire a cleaning beam
-
-CLEANUP_VIEW_SIZE = 7
-
-
-class CleanupAgent(Agent):
-    def __init__(self, agent_id, start_pos, start_orientation, grid, view_len=CLEANUP_VIEW_SIZE):
-        self.view_len = view_len
-        super().__init__(agent_id, start_pos, start_orientation, grid, view_len, view_len)
-        # remember what you've stepped on
-        self.update_agent_pos(start_pos)
-        self.update_agent_rot(start_orientation)
-
-    @property
-    def action_space(self):
-        return Discrete(9)
-
-    @property
-    def observation_space(self):
-        return Box(low=0.0, high=0.0, shape=(2 * self.view_len + 1,
-                                             2 * self.view_len + 1, 3), dtype=np.float32)
-
-    # Ugh, this is gross, this leads to the actions basically being
-    # defined in two places
-    def action_map(self, action_number):
-        """Maps action_number to a desired action in the map"""
-        return CLEANUP_ACTIONS[action_number]
-
-    def fire_beam(self, char):
-        if char == 'F':
-            self.reward_this_turn -= 1
-
-    def get_done(self):
-        return False
-
-    def hit(self, char):
-        if char == 'F':
-            self.reward_this_turn -= 50
-
-    def consume(self, char):
-        """Defines how an agent interacts with the char it is standing on"""
-        if char == 'A':
-            self.reward_this_turn += 1
-            return ' '
-        else:
-            return char

@@ -8,13 +8,20 @@ import numpy as np
 
 from multiagent.envs.multi_agent_env import MultiAgentEnv
 
-ACTIONS = {'MOVE_LEFT': [-1, 0],  # Move left
+import pdb
+
+
+
+MAP_ACTIONS = {'MOVE_LEFT': [-1, 0],  # Move left
            'MOVE_RIGHT': [1, 0],  # Move right
            'MOVE_UP': [0, -1],  # Move up
            'MOVE_DOWN': [0, 1],  # Move down
            'STAY': [0, 0],  # don't move
            'TURN_CLOCKWISE': [[0, -1], [1, 0]],  # Rotate counter clockwise
            'TURN_COUNTERCLOCKWISE': [[0, 1], [-1, 0]]}  # Move right
+
+
+
 
 ORIENTATIONS = {'LEFT': [-1, 0],
                 'RIGHT': [1, 0],
@@ -76,6 +83,7 @@ class MapEnv(MultiAgentEnv):
         """
         self.num_agents = num_agents
         self.base_map = self.ascii_to_numpy(ascii_map)
+
         # map without agents or beams
         self.world_map = np.full((len(self.base_map), len(self.base_map[0])), ' ')
         self.beam_pos = []
@@ -167,26 +175,27 @@ class MapEnv(MultiAgentEnv):
             agent_action = self.agents[agent_id].action_map(action)
             agent_actions[agent_id] = agent_action
 
-        # move
         self.update_moves(agent_actions)
-
         for agent in self.agents.values():
             pos = agent.get_pos()
             new_char = agent.consume(self.world_map[pos[0], pos[1]])
             self.world_map[pos[0], pos[1]] = new_char
-
         # execute custom moves like firing
         self.update_custom_moves(agent_actions)
-
         # execute spawning events
         self.custom_map_update()
 
+
+
         map_with_agents = self.get_map_with_agents()
+
+
 
         observations = {}
         rewards = {}
         dones = {}
         info = {}
+
         for agent in self.agents.values():
             agent.grid = map_with_agents
             rgb_arr = self.map_to_colors(agent.get_state(), self.color_map)
@@ -355,9 +364,10 @@ class MapEnv(MultiAgentEnv):
 
         reserved_slots = []
         for agent_id, action in agent_actions.items():
+
             agent = self.agents[agent_id]
-            selected_action = ACTIONS[action]
-            # TODO(ev) these two parts of the actions
+            selected_action = MAP_ACTIONS[action]
+
             if 'MOVE' in action or 'STAY' in action:
                 # rotate the selected action appropriately
                 rot_action = self.rotate_action(selected_action, agent.get_orientation())
@@ -365,6 +375,7 @@ class MapEnv(MultiAgentEnv):
                 # allow the agents to confirm what position they can move to
                 new_pos = agent.return_valid_pos(new_pos)
                 reserved_slots.append((*new_pos, 'P', agent_id))
+
             elif 'TURN' in action:
                 new_rot = self.update_rotation(action, agent.get_orientation())
                 agent.update_agent_rot(new_rot)
@@ -529,6 +540,7 @@ class MapEnv(MultiAgentEnv):
                 if len(updates) > 0:
                     self.update_map(updates)
 
+
     def update_map(self, new_points):
         """For points in new_points, place desired char on the map"""
         for i in range(len(new_points)):
@@ -598,6 +610,10 @@ class MapEnv(MultiAgentEnv):
                     # activate the agents hit function if needed
                     if [next_cell[0], next_cell[1]] in self.agent_pos:
                         agent_id = agent_by_pos[(next_cell[0], next_cell[1])]
+
+
+
+
                         self.agents[agent_id].hit(fire_char)
                         firing_points.append((next_cell[0], next_cell[1], fire_char))
                         if self.world_map[next_cell[0], next_cell[1]] in cell_types:
@@ -642,6 +658,7 @@ class MapEnv(MultiAgentEnv):
     def spawn_rotation(self):
         """Return a randomly selected initial rotation for an agent"""
         rand_int = np.random.randint(len(ORIENTATIONS.keys()))
+
         return list(ORIENTATIONS.keys())[rand_int]
 
     def rotate_view(self, orientation, view):
@@ -671,6 +688,9 @@ class MapEnv(MultiAgentEnv):
             row, col = self.wall_points[i]
             self.world_map[row, col] = '@'
 
+
+
+
     ########################################
     # Utility methods, move these eventually
     ########################################
@@ -688,10 +708,10 @@ class MapEnv(MultiAgentEnv):
             return self.rotate_left(self.rotate_left(action_vec))
 
     def rotate_left(self, action_vec):
-        return np.dot(ACTIONS['TURN_COUNTERCLOCKWISE'], action_vec)
+        return np.dot(MAP_ACTIONS['TURN_COUNTERCLOCKWISE'], action_vec)
 
     def rotate_right(self, action_vec):
-        return np.dot(ACTIONS['TURN_CLOCKWISE'], action_vec)
+        return np.dot(MAP_ACTIONS['TURN_CLOCKWISE'], action_vec)
 
     # TODO(ev) this should be an agent property
     def update_rotation(self, action, curr_orientation):

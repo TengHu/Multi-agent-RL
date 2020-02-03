@@ -7,10 +7,10 @@ import os
 import sys
 import shutil
 
+import pdb
 import argparse
 from multiagent.envs.cleanup import CleanupEnv
 from multiagent.envs.harvest import HarvestEnv
-
 
 #####################################
 parser = argparse.ArgumentParser(description='')
@@ -47,13 +47,13 @@ parser.add_argument(
 
 args = parser.parse_args()
 
-#######################################
 
+#######################################
 
 
 class Controller(object):
 
-    def __init__(self, env_name='cleanup'):
+    def __init__ (self, env_name='cleanup'):
         self.env_name = env_name
 
         if env_name == 'harvest':
@@ -70,12 +70,7 @@ class Controller(object):
 
         # TODO: initialize agents here
 
-
-
-
-
-
-    def rollout(self, horizon=50, save_path=None):
+    def rollout (self, horizon=1, save_path=None):
         """ Rollout several timesteps of an episode of the environment.
 
         Args:
@@ -83,8 +78,7 @@ class Controller(object):
             save_path: If provided, will save each frame to disk at this
                 location.
         """
-        rewards = []
-        observations = []
+
         shape = self.env.world_map.shape
         full_obs = [np.zeros(
             (shape[0], shape[1], 3), dtype=np.uint8) for i in range(horizon)]
@@ -92,10 +86,14 @@ class Controller(object):
         for i in range(horizon):
             agents = list(self.env.agents.values())
             action_dim = agents[0].action_space.n
+
             rand_action = np.random.randint(action_dim, size=args.num_agents)
+            # pdb.set_trace()
 
-            obs, rew, dones, info, = self.env.step({('agent-' + str(i)) : rand_action[i]  for i in range(0, args.num_agents)})
+            # rand_action = np.full(args.num_agents, 0)
 
+            obs, rew, dones, info, = self.env.step(
+                {('agent-' + str(i)): rand_action[i] for i in range(0, args.num_agents)})
 
             sys.stdout.flush()
 
@@ -104,14 +102,13 @@ class Controller(object):
 
             rgb_arr = self.env.map_to_colors()
             full_obs[i] = rgb_arr.astype(np.uint8)
-            observations.append(obs['agent-0'])
-            rewards.append(rew['agent-0'])
 
+            # observations.append(obs['agent-0'])
+            # rewards.append(rew['agent-0'])
+        return rew, obs, full_obs
 
-        return rewards, observations, full_obs
-
-    def render_rollout(self, horizon=50, path=None,
-                       render_type='pretty', fps=8):
+    def render_rollout (self, horizon=500, path=None,
+                        render_type='pretty', fps=8):
         """ Render a rollout into a video.
 
         Args:
@@ -132,7 +129,6 @@ class Controller(object):
             if not os.path.exists(image_path):
                 os.makedirs(image_path)
 
-
             rewards, observations, full_obs = self.rollout(horizon=horizon, save_path=image_path)
             utility_funcs.make_video_from_image_dir(path, image_path, fps=fps,
                                                     video_name=video_name)
@@ -142,9 +138,15 @@ class Controller(object):
         else:
             rewards, observations, full_obs = self.rollout(horizon=horizon)
             utility_funcs.make_video_from_rgb_imgs(full_obs, path, fps=fps,
-                            video_name=video_name)
+                                                   video_name=video_name)
 
 
-c = Controller(env_name=args.env)
-c.render_rollout(path=args.vid_path, render_type=args.render_type, fps=args.fps)
+if __name__ == "__main__":
+    import time
 
+    start = time.time()
+    c = Controller(env_name=args.env)
+    c.render_rollout(path=args.vid_path, render_type=args.render_type, fps=args.fps)
+    print(
+    "Takes {} Seconds".
+        format(time.time() - start))
