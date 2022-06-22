@@ -1,6 +1,6 @@
 torch
 torchvision
-numpy==1.16.0
+numpy==1.22.0
 gym==0.10.9
 matplotlib
 opencv-python
